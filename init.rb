@@ -3,6 +3,7 @@ require 'bundler'
 require 'sequel'
 require 'dotenv'
 require 'benchmark'
+require 'pry'
 require './link_provider'
 
 Dotenv.load
