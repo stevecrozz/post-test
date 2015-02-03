@@ -34,7 +34,7 @@ Benchmark.bm(7) do |m|
   m.report("read:") do
     (1..READ_SIZE).each do
       resource_id = rand(last_right_id)
-      DB[:test2].select_all.where( sprintf('content @> \'[{ "id": %s }]\'', resource_id)).all
+      DB[:test2].select_all.where( sprintf('content @> \'[{ "id": %s, "type": "resource" }]\'', resource_id)).all
     end
   end
 end

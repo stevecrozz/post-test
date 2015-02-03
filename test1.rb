@@ -8,7 +8,9 @@ Benchmark.bm(7) do |m|
       column :right_type, :varchar
       column :right_id, :integer
 
+      index :left_type
       index :left_id
+      index :right_type
       index :right_id
     end
   end
@@ -25,7 +27,7 @@ Benchmark.bm(7) do |m|
     (1..READ_SIZE).each do
       resource_id = rand(last_right_id)
       DB[:test1].select_all.where(
-        "left_id = #{resource_id} OR right_id = #{resource_id}"
+        "(left_type = 'resource' AND left_id = #{resource_id}) OR (right_type = 'resource' AND right_id = #{resource_id})"
       ).all
     end
   end

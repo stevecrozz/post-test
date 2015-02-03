@@ -23,7 +23,7 @@ def pretty_number(num)
   num.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 end
 
-puts "Starting test foo"
+puts "Starting test " << testfile
 puts "  Inserts: " << pretty_number(INSERT_SIZE)
 puts "  Reads:   " << pretty_number(READ_SIZE)
 puts ""
