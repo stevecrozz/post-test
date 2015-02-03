@@ -15,20 +15,26 @@ Benchmark.bm(7) do |m|
     end
   end
 
+  b = ProgressBar.create(title: "Inserts", starting_at: 0, total: INSERT_SIZE, output: STDERR)
   m.report("insert:") do
-    (1..INSERT_SIZE).each do
+    (1..INSERT_SIZE).each do |i|
+      b.progress = i
       DB[:test1].insert(provider.provide)
     end
   end
+  b.finish
 
   last_right_id = DB[:test1].order(:right_id).last[:right_id]
 
+  b = ProgressBar.create(title: "Reads", starting_at: 0, total: INSERT_SIZE, output: STDERR)
   m.report("read:") do
-    (1..READ_SIZE).each do
+    (1..READ_SIZE).each do |i|
+      b.progress = i
       resource_id = rand(last_right_id)
       DB[:test1].select_all.where(
         "(left_type = 'resource' AND left_id = #{resource_id}) OR (right_type = 'resource' AND right_id = #{resource_id})"
       ).all
     end
   end
+  b.finish
 end

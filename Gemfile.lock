@@ -17,6 +17,7 @@ GEM
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
+    ruby-progressbar (1.7.1)
     sequel (4.18.0)
     slop (3.6.0)
 
@@ -26,4 +27,5 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   pry-byebug
+  ruby-progressbar
   sequel

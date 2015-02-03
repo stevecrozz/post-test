@@ -4,6 +4,7 @@ require 'sequel'
 require 'dotenv'
 require 'benchmark'
 require 'pry'
+require 'ruby-progressbar'
 require './link_provider'
 
 Dotenv.load
